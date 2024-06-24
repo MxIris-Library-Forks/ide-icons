@@ -1,4 +1,10 @@
-import SwiftUI
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+import AppKit
+#endif
+
+#if canImport(UIKit)
+import UIKit
+#endif
 
 extension IDEIcon {
   var fontWeight: PlatformFont.Weight {

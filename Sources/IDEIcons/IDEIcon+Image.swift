@@ -1,4 +1,11 @@
-import SwiftUI
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+import AppKit
+#endif
+
+#if canImport(UIKit)
+import UIKit
+#endif
+
 #if os(watchOS)
 import WatchKit
 #endif
@@ -14,13 +21,13 @@ let deviceScale = UIScreen.main.scale
 #endif
 
 #if os(macOS)
-typealias PlatformColor = NSColor
-typealias PlatformFont = NSFont
-typealias PlatformImage = NSImage
+public typealias PlatformColor = NSColor
+public typealias PlatformFont = NSFont
+public typealias PlatformImage = NSImage
 #else
-typealias PlatformColor = UIColor
-typealias PlatformFont = UIFont
-typealias PlatformImage = UIImage
+public typealias PlatformColor = UIColor
+public typealias PlatformFont = UIFont
+public typealias PlatformImage = UIImage
 #endif
 
 extension PlatformImage {
@@ -43,15 +50,15 @@ extension PlatformImage {
     }
 }
 
-extension Image {
-    public init(_ ideIcon: IDEIcon) {
-        #if os(macOS)
-        self.init(nsImage: ideIcon.image)
-        #else
-        self.init(uiImage: ideIcon.image)
-        #endif
-    }
-}
+//extension Image {
+//    public init(_ ideIcon: IDEIcon) {
+//        #if os(macOS)
+//        self.init(nsImage: ideIcon.image)
+//        #else
+//        self.init(uiImage: ideIcon.image)
+//        #endif
+//    }
+//}
 
 #if !os(macOS)
 var cache = [IDEIcon: PlatformImage]()
@@ -141,19 +148,19 @@ extension IDEIcon {
             context.beginPath()
             context.addPath(roundedRect: bounds, cornerRadius: outerRadius)
             context.closePath()
-            context.setFillColor(PlatformColor(color.outlineColor[colorScheme]).cgColor)
+            context.setFillColor(color.outlineColor[colorScheme].cgColor)
             context.fillPath()
 
             context.beginPath()
             context.addPath(roundedRect: bounds.insetBy(borderWidth), cornerRadius: borderRadius)
             context.closePath()
-            context.setFillColor(PlatformColor(color.borderColor[colorScheme]).cgColor)
+            context.setFillColor(color.borderColor[colorScheme].cgColor)
             context.fillPath()
 
             context.beginPath()
             context.addPath(roundedRect: bounds.insetBy(borderWidth + outlineWidth), cornerRadius: outlineRadius)
             context.closePath()
-            context.setFillColor(PlatformColor(color.backgroundColor[colorScheme]).cgColor)
+            context.setFillColor(color.backgroundColor[colorScheme].cgColor)
             context.fillPath()
 
         case .outline:
@@ -162,14 +169,14 @@ extension IDEIcon {
             context.beginPath()
             context.addPath(roundedRect: bounds.insetBy(borderWidth + lineWidth / 2), cornerRadius: borderRadius)
             context.closePath()
-            context.setStrokeColor(PlatformColor(color.borderColor[colorScheme]).cgColor)
+            context.setStrokeColor(color.borderColor[colorScheme].cgColor)
             context.strokePath()
 
         case .simple:
             context.beginPath()
             context.addPath(roundedRect: bounds.insetBy(borderWidth), cornerRadius: borderRadius * 1.5)
             context.closePath()
-            context.setFillColor(PlatformColor(color.simpleColor).cgColor)
+            context.setFillColor(color.simpleColor.cgColor)
             context.fillPath()
 
         case .simpleHighlighted:
@@ -236,9 +243,9 @@ extension IDEIcon {
 //    guard let descriptor = systemFont.fontDescriptor.withDesign(design) else { return systemFont }
 //    return NSFont(descriptor: descriptor, size: systemFont.pointSize) ?? systemFont
 
-        var textColor = PlatformColor(.white).cgColor
+        var textColor = PlatformColor.white.cgColor
         if style == .outline || color == .monochrome {
-            textColor = PlatformColor(color.borderColor[colorScheme]).cgColor
+            textColor = color.borderColor[colorScheme].cgColor
         }
 
         if style == .simpleHighlighted {
