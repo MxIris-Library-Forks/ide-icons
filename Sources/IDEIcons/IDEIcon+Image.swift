@@ -215,8 +215,8 @@ extension IDEIcon {
         //     font = PlatformFont(name: "SFPro-CondensedMedium", size: fontSize + fontSizeAdjustment)!
         //   }
         // } else {
-        if ![.simple, .simpleHighlighted].contains(style), case let .text(s) = content, ["Ex", "Pr"].contains(s) {
-            font = PlatformFont(name: "SFPro-CondensedMedium", size: fontSize + fontSizeAdjustment)!
+        if ![.simple, .simpleHighlighted].contains(style), case let .text(s) = content, ["Ex", "Pr"].contains(s), let existedFont = PlatformFont(name: "SFPro-CondensedMedium", size: fontSize + fontSizeAdjustment) {
+            font = existedFont
             condensed = true
         } else {
             font = PlatformFont.systemFont(ofSize: fontSize + fontSizeAdjustment, weight: fontWeight)
