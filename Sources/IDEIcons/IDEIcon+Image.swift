@@ -206,8 +206,8 @@ public extension IDEIcon {
     //     font = PlatformFont(name: "SFPro-CondensedMedium", size: fontSize + fontSizeAdjustment)!
     //   }
     // } else {
-    if ![.simple, .simpleHighlighted].contains(style), case .text(let s) = content, ["Ex", "Pr"].contains(s) {
-      font = PlatformFont(name: "SFPro-CondensedMedium", size: fontSize + fontSizeAdjustment)!
+    if ![.simple, .simpleHighlighted].contains(style), case .text(let s) = content, ["Ex", "Pr"].contains(s), let sfProFont = PlatformFont(name: "SFPro-CondensedMedium", size: fontSize + fontSizeAdjustment) {
+      font = sfProFont
       condensed = true
     } else {
       font = PlatformFont.systemFont(ofSize: fontSize + fontSizeAdjustment, weight: fontWeight)
