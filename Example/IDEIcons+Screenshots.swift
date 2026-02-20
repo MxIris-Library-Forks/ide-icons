@@ -46,7 +46,7 @@ class IDEIcons_Screenshots: PreviewProvider {
           VStack {
             ForEach([16, 20, 24, 32].reversed(), id: \.self) { size in
               ForEach([IDEIconStyle.default, IDEIconStyle.outline, IDEIconStyle.simple], id: \.self) { style in
-                Image(IDEIcon("P", color: color, style: style, size: CGFloat(size)))
+                  Image(IDEIcon("P", color: color, style: style, size: CGFloat(size)))
               }
             }
           }

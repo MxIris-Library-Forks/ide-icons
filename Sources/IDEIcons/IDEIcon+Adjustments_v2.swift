@@ -2,7 +2,7 @@ import SwiftUI
 
 // TODO: finish this:
 
-//extension IDEIcon {
+// extension IDEIcon {
 //  public struct Adjustment {
 //    public var fontSize: CGFloat?
 //    public var yOffset: CGFloat?
@@ -52,4 +52,4 @@ import SwiftUI
 ////
 ////    }
 ////  }
-//}
+// }
