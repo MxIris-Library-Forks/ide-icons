@@ -1,7 +1,7 @@
 import SwiftUI
 
 #if os(macOS)
-var deviceScale: CGFloat { NSScreen.main?.backingScaleFactor ?? 1.0 }
+let deviceScale: CGFloat = 1.0
 #elseif os(watchOS)
 var deviceScale: CGFloat { WKInterfaceDevice.current().screenScale }
 #elseif os(visionOS)
